@@ -1,0 +1,25 @@
+name: Send Telegram Notification
+
+on:
+  schedule:
+    - cron: '30 16 * * *'  # Schedule to run daily at 9 AM UTC. Adjust the time as needed.
+
+jobs:
+  send_notification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'  # Specify your Python version (e.g., '3.8')
+
+      - name: Install dependencies
+        run: pip install requests  # Install necessary dependencies
+
+      - name: Run Python script
+        run: |
+          python githubactions/tg_hello1.py  # Replace 'path/to/your/script.py' with your script's path
